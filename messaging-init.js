@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getMessaging, getToken, onMessage } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging.js";
+import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDzjbq339_QizKUVygfbX2WjQ5Mb_4SLys",
@@ -12,22 +12,20 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
 
-document.getElementById("notifyBtn").addEventListener("click", async () => {
+async function requestPermission() {
   try {
-    const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
-      const token = await getToken(messaging, {
-        vapidKey: "BLOAk7Zxjljd293LeS-KStSw9RSfFSTlOwusah4KebhfYSV4cD6LIIeLN8VTxySB_OHRW0Wjzrjin97hIr5_KlM"
-      });
-      document.getElementById("status").innerText = "Notifications enabled!";
-      console.log("Token:", token);
-    } else {
-      document.getElementById("status").innerText = "Permission denied.";
-    }
+    const registration = await navigator.serviceWorker.register('./firebase-messaging-sw.js', { scope: './' });
+    const messaging = getMessaging(app);
+    const token = await getToken(messaging, {
+      vapidKey: "BLOAk7Zxjljd293LeS-KStSw9RSfFSTlOwusah4KebhfYSV4cD6LIIeLN8VTxySB_OHRW0Wjzrjin97hIr5_KlM",
+      serviceWorkerRegistration: registration
+    });
+    console.log("Push notification token:", token);
+    alert("Push notification permission granted.");
   } catch (err) {
-    console.error(err);
-    document.getElementById("status").innerText = "Error requesting permission.";
+    console.error("Error requesting permission:", err);
+    alert("Notification permission failed.");
   }
-});
+}
+window.requestPermission = requestPermission;
