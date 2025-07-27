@@ -56,6 +56,14 @@
       background-color: #3ddc84;
       color: #000;
     }
+    .ios-instructions {
+      display: none;
+      margin-top: 1rem;
+    }
+    .ios-instructions img {
+      max-width: 220px;
+      border-radius: 12px;
+    }
   </style>
 </head>
 <body>
@@ -66,17 +74,26 @@
   <button id="ios-button" class="install-button ios">Install on iPhone</button>
   <button id="android-button" class="install-button android">Install on Android</button>
 
+  <div id="ios-instructions" class="ios-instructions">
+    <p>Tap the <strong>Share</strong> icon in your browser and select <strong>“Add to Home Screen”</strong>.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/IOS_Share_icon_%282022%29.svg/1024px-IOS_Share_icon_%282022%29.svg.png" alt="Share icon example">
+  </div>
+
   <script>
     const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isAndroid = /Android/.test(navigator.userAgent);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const isChrome = /CriOS/.test(navigator.userAgent);
 
     const iosButton = document.getElementById('ios-button');
     const androidButton = document.getElementById('android-button');
+    const iosInstructions = document.getElementById('ios-instructions');
 
     if (isiOS) {
       iosButton.style.display = 'inline-block';
+      iosInstructions.style.display = 'block';
       iosButton.addEventListener('click', () => {
-        alert('1. Tap the Share icon in Safari\n2. Choose "Add to Home Screen"');
+        alert('Tap the Share icon in your browser and choose "Add to Home Screen".');
       });
     } else if (isAndroid) {
       let deferredPrompt;
