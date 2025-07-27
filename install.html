@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Install the Sondera App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1A1A1A" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f4f1ee;
+      color: #1A1A1A;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      padding: 0 1.5rem;
+    }
+    .install-button {
+      display: none;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #000;
+      color: #fff;
+      font-weight: bold;
+      margin: 0.5rem;
+    }
+    .ios {
+      background-color: #000;
+    }
+    .android {
+      background-color: #3ddc84;
+    }
+  </style>
+</head>
+<body>
+  <h1>Install the Sondera App</h1>
+  <p>Get quick access to your tools, courses, and resources anytime—right from your home screen.</p>
+
+  <button id="ios-button" class="install-button ios">Install on iPhone</button>
+  <button id="android-button" class="install-button android">Install on Android</button>
+
+  <script>
+    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    const iosButton = document.getElementById('ios-button');
+    const androidButton = document.getElementById('android-button');
+
+    if (isiOS) {
+      iosButton.style.display = 'inline-block';
+      iosButton.addEventListener('click', () => {
+        alert('Tap the Share icon in Safari and choose "Add to Home Screen"');
+      });
+    } else if (isAndroid) {
+      let deferredPrompt;
+      androidButton.style.display = 'inline-block';
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+      });
+
+      androidButton.addEventListener('click', () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.finally(() => {
+            deferredPrompt = null;
+          });
+        } else {
+          alert('To install this app, use Chrome and tap the "Add to Home Screen" option in your browser menu.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
