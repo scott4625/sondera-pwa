@@ -1,32 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sondera App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#1A1A1A" />
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
-    <!-- sondera-pwa v1.3 -->
-  </head>
-  <body>
-    <h1>Welcome to the Sondera App</h1>
-    <p>Loading the app...</p>
-    <p><a href="https://sonderalife.mykajabi.com/login">Tap here if not redirected</a></p>
-    <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("service-worker-v1.js").then(() => {
-          console.log("SW registered");
-        });
-      }
-      setTimeout(function () {
-        window.location.href = "https://sonderalife.mykajabi.com/login";
-      }, 3000);
-    </script>
-    <noscript>
-      <p>JavaScript is required. <a href="https://sonderalife.mykajabi.com/login">Click here to log in</a>.</p>
-    </noscript>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>Sondera App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1A1A1A" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
+</head>
+<body>
+  <h1>Welcome to the Sondera App</h1>
+  <p>Tap the <strong>Share</strong> icon and choose <strong>"Add to Home Screen"</strong> to install.</p>
+  <p>Once installed, launching the app will take you directly to your content.</p>
+  <noscript>
+    <p>JavaScript is required. <a href="launch.html">Click here to continue</a>.</p>
+  </noscript>
+</body>
 </html>
