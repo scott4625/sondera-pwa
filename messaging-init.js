@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 const db = getFirestore(app);
 
-document.getElementById('enable-notifications').addEventListener('click', async () => {
+document.getElementById('enable-notifications')?.addEventListener('click', async () => {
   try {
     const permission = await Notification.requestPermission();
     if (permission === 'granted') {
@@ -26,7 +26,6 @@ document.getElementById('enable-notifications').addEventListener('click', async 
       });
       console.log("Token received:", token);
       localStorage.setItem("notificationPrompted", "true");
-
       await addDoc(collection(db, "deviceTokens"), {
         token: token,
         createdAt: new Date().toISOString()

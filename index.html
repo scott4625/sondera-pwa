@@ -1,33 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sondera App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#1A1A1A" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <img src="icons/logo.png" alt="Sondera logo" class="logo" />
-    <h1>Enable Notifications?</h1>
-    <p>We’ll remind you when tools, assessments, or courses are ready.</p>
-    <div class="actions">
-      <button id="enable-notifications">Turn on Notifications</button>
-      <button onclick="redirectNow()">Skip</button>
-    </div>
-  </div>
-
-  <script type="module" src="messaging-init.js"></script>
+  <p>If you're seeing this, your app is installed and ready to receive notifications.</p>
   <script>
-    function redirectNow() {
-      window.location.href = "https://sonderalife.mykajabi.com/login";
-    }
-
-    // If already accepted or denied, redirect immediately
-    if (Notification.permission === "granted" || localStorage.getItem("notificationPrompted") === "true") {
-      redirectNow();
+    if (!localStorage.getItem("notificationPrompted")) {
+      window.location.href = "/install.html";
     }
   </script>
 </body>

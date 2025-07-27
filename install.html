@@ -1,37 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Install Sondera</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sondera App Install</title>
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <img src="icons/logo.png" alt="Sondera logo" class="logo" />
+    <img src="icons/icon-192.png" alt="Sondera Logo" class="logo"/>
     <h1>Install the Sondera App</h1>
-    <p>Access your tools and courses anytime by adding Sondera to your home screen.</p>
-    <button id="install-button">Install App</button>
+    <p>Tap the <span class="share-icon">⤴</span> and "Add to Home Screen" to install.</p>
+    <button id="enable-notifications">Enable Notifications</button>
   </div>
-
-  <script>
-    let deferredPrompt;
-    const installButton = document.getElementById('install-button');
-    installButton.style.display = 'none';
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installButton.style.display = 'block';
-    });
-
-    installButton.addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        deferredPrompt = null;
-      }
-    });
-  </script>
+  <script type="module" src="messaging-init.js"></script>
 </body>
 </html>
