@@ -1,3 +1,4 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging.js";
 
@@ -12,20 +13,21 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const messaging = getMessaging(app);
 
-async function requestPermission() {
+document.getElementById('enable-notifications').addEventListener('click', async () => {
   try {
-    const registration = await navigator.serviceWorker.register('./firebase-messaging-sw.js', { scope: './' });
-    const messaging = getMessaging(app);
-    const token = await getToken(messaging, {
-      vapidKey: "BLOAk7Zxjljd293LeS-KStSw9RSfFSTlOwusah4KebhfYSV4cD6LIIeLN8VTxySB_OHRW0Wjzrjin97hIr5_KlM",
-      serviceWorkerRegistration: registration
-    });
-    console.log("Push notification token:", token);
-    alert("Push notification permission granted.");
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      const token = await getToken(messaging, {
+        vapidKey: "BLOAk7Zxjljd293LeS-KStSw9RSfFSTlOwusah4KebhfYSV4cD6LIIeLN8VTxySB_OHRW0Wjzrjin97hIr5_KlM"
+      });
+      console.log("Token received:", token);
+      localStorage.setItem("notificationPrompted", "true");
+    }
+    window.location.href = "https://sonderalife.mykajabi.com/login";
   } catch (err) {
-    console.error("Error requesting permission:", err);
-    alert("Notification permission failed.");
+    console.error("Notification error:", err);
+    window.location.href = "https://sonderalife.mykajabi.com/login";
   }
-}
-window.requestPermission = requestPermission;
+});
