@@ -1,13 +1,14 @@
-importScripts('https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.5.2/firebase-messaging-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging-compat.js');
 
 firebase.initializeApp({
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDzjbq339_QizKUVygfbX2WjQ5Mb_4SLys",
+  authDomain: "sondera-pwa.firebaseapp.com",
+  projectId: "sondera-pwa",
+  storageBucket: "sondera-pwa.firebasestorage.app",
+  messagingSenderId: "1006942535696",
+  appId: "1:1006942535696:web:f136db480044a602e30a95",
+  measurementId: "G-NXX9DYK611"
 });
 
 const messaging = firebase.messaging();
@@ -17,7 +18,8 @@ messaging.onBackgroundMessage(function(payload) {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: '/logo-sondera.png'
+    icon: '/icon-192.png'
   };
+
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
