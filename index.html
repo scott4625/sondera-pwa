@@ -4,8 +4,19 @@
     <meta charset="UTF-8" />
     <title>Sondera App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#1A1A1A" />
   </head>
-  <body style="margin:0; padding:0; overflow:hidden;">
-    <iframe src="https://sonderalife.mykajabi.com/login" style="width:100vw; height:100vh; border:none;"></iframe>
+  <body style="margin: 0; padding: 0; overflow: hidden;">
+    <iframe
+      src="https://members.sonderalife.com/"
+      style="width: 100vw; height: 100vh; border: none;"
+    ></iframe>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
   </body>
 </html>
