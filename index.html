@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#1A1A1A" />
-    <!-- sondera-pwa v1.1 -->
+    <!-- sondera-pwa v1.2 -->
   </head>
   <body>
-    <p><a href="https://sonderalife.mykajabi.com/login">Tap here if not redirected</a></p>
     <h1>Welcome to the Sondera App</h1>
     <p>Loading the app...</p>
-    
+    <p><a href="https://sonderalife.mykajabi.com/login">Tap here if not redirected</a></p>
     <script>
-       if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker-v1.js");
-  }
-    setTimeout(function () {
-      window.location.href = "https://sonderalife.mykajabi.com/login";
-    }, 3000);
-  </script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker-v1.js").then(() => {
+          console.log("SW registered");
+        });
+      }
+      setTimeout(function () {
+        window.location.href = "https://sonderalife.mykajabi.com/login";
+      }, 3000);
+    </script>
     <noscript>
       <p>JavaScript is required. <a href="https://sonderalife.mykajabi.com/login">Click here to log in</a>.</p>
     </noscript>
