@@ -14,6 +14,9 @@
     <p>Loading the app...</p>
     
     <script>
+       if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker-v1.js");
+  }
     setTimeout(function () {
       window.location.href = "https://sonderalife.mykajabi.com/login";
     }, 3000);
