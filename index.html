@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sondera App</title>
+  <title>Sondera Notifications</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1A1A1A" />
-  <script type="module" src="messaging-init.js"></script>
 </head>
-<body>
-  <h1>Welcome to Sondera</h1>
-  <p>If you're seeing this, your app is installed and ready to receive notifications.</p>
+<body style="font-family: sans-serif; text-align: center; padding: 2rem;">
+  <img src="icon-192.png" alt="Sondera logo" width="100" />
+  <h1>Enable Notifications</h1>
+  <p>Tap below to receive updates and reminders from Sondera.</p>
+  <button id="notifyBtn" style="padding: 1rem 2rem; font-size: 1rem;">Turn on Notifications</button>
+  <p id="status"></p>
+
+  <script type="module" src="messaging-init.js"></script>
 </body>
 </html>
