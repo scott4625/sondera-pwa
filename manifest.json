@@ -1,7 +1,7 @@
 {
   "name": "Sondera",
   "short_name": "Sondera",
-  "start_url": "/",
+  "start_url": "/sondera-pwa/launch.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1A1A1A",
