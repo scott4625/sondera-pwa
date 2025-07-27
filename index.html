@@ -1,99 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sondera Push Starter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <title>Sondera App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1A1A1A" />
-  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-messaging-compat.js"></script>
   <script type="module" src="messaging-init.js"></script>
-
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;500&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Lexend', sans-serif;
-      background-color: #f4f1ee;
-      color: #1a1a1a;
-      text-align: center;
-      padding: 2rem;
-    }
-    button {
-      background-color: #000;
-      color: #fff;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #token-box {
-      margin-top: 2rem;
-      word-wrap: break-word;
-      font-size: 0.8rem;
-      color: #555;
-    }
-  </style>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDzjbq339_QizKUVygfbX2WjQ5Mb_4SLys",
-    authDomain: "sondera-pwa.firebaseapp.com",
-    projectId: "sondera-pwa",
-    storageBucket: "sondera-pwa.firebasestorage.app",
-    messagingSenderId: "1006942535696",
-    appId: "1:1006942535696:web:f136db480044a602e30a95",
-    measurementId: "G-NXX9DYK611"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
 </head>
 <body>
-  <h1>Enable Sondera Notifications</h1>
-  <p>Stay updated with reminders, new tools, and insights sent directly to your device.</p>
-  <button onclick="subscribe()">Enable Notifications</button>
-  <div id="token-box"></div>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const messaging = firebase.messaging();
-
-    async function subscribe() {
-      try {
-        const status = await Notification.requestPermission();
-        if (status !== 'granted') {
-          alert('Permission not granted for notifications.');
-          return;
-        }
-
-        const token = await messaging.getToken({
-          vapidKey: 'YOUR_VAPID_KEY'
-        });
-
-        document.getElementById('token-box').innerText = 'Your device token: ' + token;
-        console.log("FCM Token:", token);
-
-        // TODO: Send token to your backend
-      } catch (err) {
-        console.error(err);
-        alert("Error retrieving token. See console for details.");
-      }
-    }
-  </script>
+  <h1>Welcome to Sondera</h1>
+  <p>If you're seeing this, your app is installed and ready to receive notifications.</p>
 </body>
 </html>

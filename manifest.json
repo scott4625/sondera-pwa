@@ -1,15 +1,20 @@
 {
-  "name": "Sondera App",
+  "name": "Sondera",
   "short_name": "Sondera",
-  "start_url": "/sondera-pwa/launch.html",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#f4f1ee",
+  "background_color": "#1A1A1A",
   "theme_color": "#1A1A1A",
   "icons": [
     {
-      "src": "logo-sondera.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
