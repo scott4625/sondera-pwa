@@ -1,6 +1,7 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDzjbq339_QizKUVygfbX2WjQ5Mb_4SLys",
@@ -14,6 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
+const db = getFirestore(app);
 
 document.getElementById('enable-notifications').addEventListener('click', async () => {
   try {
@@ -24,6 +26,11 @@ document.getElementById('enable-notifications').addEventListener('click', async 
       });
       console.log("Token received:", token);
       localStorage.setItem("notificationPrompted", "true");
+
+      await addDoc(collection(db, "deviceTokens"), {
+        token: token,
+        createdAt: new Date().toISOString()
+      });
     }
     window.location.href = "https://sonderalife.mykajabi.com/login";
   } catch (err) {
